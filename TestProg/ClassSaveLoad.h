@@ -13,7 +13,7 @@ class SaveLoad
 {
 public:
 
-	virtual void  Save(T1* obj, int size) = 0;
+	virtual void  Save(T1* obj) = 0;
 	virtual void Load(T1* obj) = 0;
 
 
@@ -28,11 +28,11 @@ class ObjectToFile : public SaveLoad<T>
 public:
 	ObjectToFile(string fn) :filename(fn) {}
 
-	virtual void  Save(T* obj, int size)
+	virtual void  Save(T* obj)
 	{
 		ofstream fout(filename, ios::trunc | ios::binary);
 
-		fout.write((char*)obj, size);
+		fout.write((char*)obj, sizeof(*obj));
 		fout.close();
 
 	};
@@ -40,12 +40,9 @@ public:
 	{
 
 		ifstream fin(filename, ios::binary);
-		fin.seekg(0, ios::end );
-		int size = fin.tellg();
+		
 
-		fin.seekg(0, ios::beg);
-
-		fin.read((char*)obj, size);
+		fin.read((char*)obj, sizeof(*obj));
 		fin.close();
 
 	}

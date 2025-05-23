@@ -15,7 +15,7 @@ public:
 	Person();
 	void Print();
 	void Set();
-	int SizeOf() { return sizeof(name) + sizeof(phone); }
+	
 
 };
 

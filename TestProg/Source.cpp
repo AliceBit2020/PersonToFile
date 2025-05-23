@@ -17,7 +17,7 @@ int main()
     
     
     ObjectToFile<Person>* p_file = new ObjectToFile<Person>("person.txt");
-    p_file->Save(p, p->SizeOf());
+    p_file->Save(p);
 
     Person* obj_from_file = new Person();
 
